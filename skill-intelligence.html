@@ -80,8 +80,28 @@
                 </div>
             </div>
 
+            <!-- Skill Progression Chart (New Interactive Graph) -->
+            <div class="card grid-col-span-full mt-4 highlight-border" style="background: var(--bg-card);">
+                <div class="card-header">
+                    <div>
+                        <h2>Skill Progression Timeline</h2>
+                        <p class="subtext">Track your technical and soft skill growth over time.</p>
+                    </div>
+                    <div>
+                        <select class="role-selector" style="font-size: 0.9rem;" id="time-range-select">
+                            <option value="6m">Last 6 Months</option>
+                            <option value="3m">Last 3 Months</option>
+                            <option value="1y">Last Year</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="radar-container" style="height: 300px; padding: 1rem;">
+                    <canvas id="progressionChart"></canvas>
+                </div>
+            </div>
+
             <!-- Skill DNA -->
-            <div class="card grid-col-span-full mt-4 highlight-border">
+            <div class="card grid-col-span-full mt-4">
                 <div class="card-header">
                     <div>
                         <h2>Your Skill DNA</h2>

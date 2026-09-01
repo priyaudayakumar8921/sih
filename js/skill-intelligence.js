@@ -200,5 +200,81 @@ async function initSkillIntelligence(profileData) {
             `;
             dnaGrid.appendChild(cell);
         });
+    } else if (dnaGrid) {
+        dnaGrid.innerHTML = '<p class="text-secondary p-4">Complete an assessment to generate your Skill DNA.</p>';
+    }
+
+    // Render Progression Chart (Line Chart)
+    const progCtx = document.getElementById('progressionChart');
+    if (progCtx) {
+        const progContext = progCtx.getContext('2d');
+        
+        // Generate dynamic mock history based on current readiness for presentation impact
+        const currentR = profileData.readiness || 10; 
+        const historyData = [
+            Math.max(0, currentR - 35),
+            Math.max(0, currentR - 25),
+            Math.max(0, currentR - 15),
+            Math.max(0, currentR - 8),
+            Math.max(0, currentR - 2),
+            currentR
+        ];
+
+        new Chart(progContext, {
+            type: 'line',
+            data: {
+                labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'],
+                datasets: [{
+                    label: 'Overall Industry Readiness',
+                    data: historyData,
+                    borderColor: '#C9A227', // ANSORA Gold
+                    backgroundColor: 'rgba(201, 162, 39, 0.1)',
+                    borderWidth: 3,
+                    fill: true,
+                    tension: 0.4, // smooth curves
+                    pointBackgroundColor: '#FAFAF8',
+                    pointBorderColor: '#C9A227',
+                    pointBorderWidth: 2,
+                    pointRadius: 4,
+                    pointHoverRadius: 6
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        max: 100,
+                        grid: {
+                            color: 'rgba(0,0,0,0.05)',
+                            drawBorder: false
+                        },
+                        ticks: {
+                            color: '#6b7280',
+                            font: { family: "'Inter', sans-serif" }
+                        }
+                    },
+                    x: {
+                        grid: { display: false },
+                        ticks: {
+                            color: '#6b7280',
+                            font: { family: "'Inter', sans-serif" }
+                        }
+                    }
+                },
+                plugins: {
+                    legend: { display: false },
+                    tooltip: {
+                        backgroundColor: '#0B0B0D',
+                        titleFont: { family: "'Inter', sans-serif", size: 13 },
+                        bodyFont: { family: "'Inter', sans-serif", size: 14 },
+                        padding: 12,
+                        cornerRadius: 8,
+                        displayColors: false
+                    }
+                }
+            }
+        });
     }
 }
