@@ -51,15 +51,15 @@
             <div class="stats-mini">
                 <div class="stat-row">
                     <span>Industry Readiness</span>
-                    <span class="text-accent font-bold" id="sidebar-readiness">82%</span>
+                    <span class="text-accent font-bold" id="sidebar-readiness">--%</span>
                 </div>
-                <div class="stat-progress"><div class="progress-fill" style="width: 82%;"></div></div>
+                <div class="stat-progress"><div class="progress-fill" id="sidebar-readiness-fill" style="width: 0%;"></div></div>
                 
                 <div class="stat-row mt-2">
                     <span>Profile completion</span>
-                    <span class="text-green font-bold">91%</span>
+                    <span class="text-green font-bold" id="sidebar-completion">--%</span>
                 </div>
-                <div class="stat-progress"><div class="progress-fill green-fill" style="width: 91%;"></div></div>
+                <div class="stat-progress"><div class="progress-fill green-fill" id="sidebar-completion-fill" style="width: 0%;"></div></div>
             </div>
         </div>
     </aside>
@@ -69,16 +69,16 @@
         <!-- Top Bar -->
         <header class="top-bar">
             <div class="greeting">
-                <h1 id="greeting-name">Good morning, Priya 👋</h1>
+                <h1 id="greeting-name">Good morning...</h1>
                 <p class="subtext">Here's your career intelligence for today.</p>
             </div>
             <div class="user-actions">
                 <div class="notification-bell">
                     <i class="fa-regular fa-bell"></i>
-                    <span class="badge">3</span>
+                    <span class="badge" id="notification-count">0</span>
                 </div>
                 <div class="user-avatar">
-                    <img src="https://ui-avatars.com/api/?name=Priya&background=0D8ABC&color=fff" alt="User Avatar">
+                    <img id="avatar-img" src="https://ui-avatars.com/api/?name=Student&background=C9A227&color=fff" alt="User Avatar">
                 </div>
             </div>
         </header>
@@ -90,17 +90,17 @@
             <div class="card readiness-card highlight-border">
                 <div class="card-header">
                     <h3>Industry Readiness</h3>
-                    <div class="trend positive"><i class="fa-solid fa-arrow-trend-up"></i> +8% this month</div>
+                    <div class="trend positive" id="readiness-trend"></div>
                 </div>
                 <div class="circular-progress-container">
                     <div class="circular-progress" id="readiness-circle">
                         <div class="inner-circle">
-                            <span class="readiness-value" id="readiness-value-display">82%</span>
+                            <span class="readiness-value" id="readiness-value-display">--%</span>
                         </div>
                     </div>
                 </div>
                 <div class="status-text text-center">
-                    <span class="badge-status">Nearly Industry Ready</span>
+                    <span class="badge-status" id="readiness-badge">Loading...</span>
                 </div>
             </div>
 
@@ -110,17 +110,17 @@
                     <span class="label-small">TARGET ROLE</span>
                     <button class="btn-text">Change Goal</button>
                 </div>
-                <h2 class="target-title">Full Stack Developer</h2>
-                <p class="target-industry">Industry: Software / Technology</p>
+                <h2 class="target-title">Loading...</h2>
+                <p class="target-industry" id="target-industry">Industry: Technology</p>
                 
                 <div class="target-stats mt-4">
                     <div class="t-stat">
                         <span class="t-label">Readiness</span>
-                        <span class="t-value">82%</span>
+                        <span class="t-value" id="target-readiness-val">--%</span>
                     </div>
                     <div class="t-stat">
                         <span class="t-label">Est. Time to Target</span>
-                        <span class="t-value">6 weeks</span>
+                        <span class="t-value" id="target-time-val">--</span>
                     </div>
                 </div>
             </div>
@@ -150,12 +150,8 @@
                 <div class="card-header">
                     <h3>Your Career Brief</h3>
                 </div>
-                <div class="brief-items">
-                    <div class="b-item"><span class="emoji">🎯</span> 2 skill gaps need attention</div>
-                    <div class="b-item"><span class="emoji">💼</span> 3 new opportunities match your profile</div>
-                    <div class="b-item"><span class="emoji">📚</span> 1 recommended workshop</div>
-                    <div class="b-item"><span class="emoji">📋</span> 2 applications require action</div>
-                    <div class="b-item"><span class="emoji">🔥</span> Your readiness increased 4% this week</div>
+                <div class="brief-items" id="career-brief-items">
+                    <div class="b-item text-secondary">Analyzing your profile data...</div>
                 </div>
             </div>
 

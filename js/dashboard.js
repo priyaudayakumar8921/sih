@@ -47,7 +47,23 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 async function renderDashboard(profileData) {
-    document.getElementById('greeting-name').textContent = `Good morning, ${profileData.name} 👋`;
+    document.getElementById('greeting-name').textContent = `Good morning, ${profileData.name || 'Student'} 👋`;
+    
+    const avatarImg = document.getElementById('avatar-img');
+    if (avatarImg) {
+        avatarImg.src = `https://ui-avatars.com/api/?name=${encodeURIComponent(profileData.name || 'Student')}&background=C9A227&color=fff`;
+    }
+
+    // Sidebar Profile Completion
+    let completion = 20; // base
+    if (profileData.onboardingComplete) completion += 30;
+    if (profileData.skills && Object.keys(profileData.skills).length > 0) completion += 30;
+    if (profileData.breakdown && profileData.breakdown.length > 0) completion += 20;
+    
+    const sidebarCompEl = document.getElementById('sidebar-completion');
+    const sidebarCompFill = document.getElementById('sidebar-completion-fill');
+    if (sidebarCompEl) sidebarCompEl.textContent = `${completion}%`;
+    if (sidebarCompFill) sidebarCompFill.style.width = `${completion}%`;
 
     // Update Target Role dynamically if exists in DB
     if (profileData.targetRole) {
@@ -57,10 +73,24 @@ async function renderDashboard(profileData) {
             if (benchmarkSnap.exists()) {
                 const targetTitleEl = document.querySelector('.target-title');
                 if (targetTitleEl) targetTitleEl.textContent = benchmarkSnap.data().name;
+                
+                const targetReadinessVal = document.getElementById('target-readiness-val');
+                if (targetReadinessVal) targetReadinessVal.textContent = `${profileData.readiness || 0}%`;
+                
+                const targetTimeVal = document.getElementById('target-time-val');
+                if (targetTimeVal) {
+                    const r = profileData.readiness || 0;
+                    if (r >= 90) targetTimeVal.textContent = "Ready now!";
+                    else if (r >= 70) targetTimeVal.textContent = "2-4 weeks";
+                    else targetTimeVal.textContent = "2-3 months";
+                }
             }
         } catch (err) {
             console.error("Could not load benchmark data", err);
         }
+    } else {
+        const targetTitleEl = document.querySelector('.target-title');
+        if (targetTitleEl) targetTitleEl.textContent = "No Target Role Set";
     }
 
     // Render Breakdown Cards
@@ -92,10 +122,13 @@ async function renderDashboard(profileData) {
         breakdownContainer.innerHTML = '<p class="text-secondary" style="grid-column: 1/-1;">No breakdown data available. Take an assessment to generate your profile.</p>';
     }
 
-    // Animate Circular Progress
+    // Animate Circular Progress & Sidebar Readiness
     const readinessCircle = document.getElementById('readiness-circle');
     const readinessValueDisplay = document.getElementById('readiness-value-display');
     const sidebarReadiness = document.getElementById('sidebar-readiness');
+    const sidebarReadinessFill = document.getElementById('sidebar-readiness-fill');
+    const readinessBadge = document.getElementById('readiness-badge');
+    const readinessTrend = document.getElementById('readiness-trend');
     
     if (readinessCircle) {
         let currentProgress = 0;
@@ -103,6 +136,19 @@ async function renderDashboard(profileData) {
         const speed = 15; // ms per 1%
         
         if (sidebarReadiness) sidebarReadiness.textContent = `${targetProgress}%`;
+        if (sidebarReadinessFill) sidebarReadinessFill.style.width = `${targetProgress}%`;
+        
+        if (readinessBadge) {
+            if (targetProgress >= 90) readinessBadge.textContent = "Industry Ready";
+            else if (targetProgress >= 70) readinessBadge.textContent = "Nearly Ready";
+            else readinessBadge.textContent = "Needs Development";
+        }
+        
+        if (readinessTrend) {
+            // Simulated trend calculation
+            if (targetProgress > 50) readinessTrend.innerHTML = `<i class="fa-solid fa-arrow-trend-up"></i> Trending Up`;
+            else readinessTrend.innerHTML = `<i class="fa-solid fa-minus"></i> Stable`;
+        }
 
         if (targetProgress > 0) {
             const progressInterval = setInterval(() => {
@@ -118,5 +164,15 @@ async function renderDashboard(profileData) {
             readinessValueDisplay.textContent = `0%`;
             readinessCircle.style.background = `conic-gradient(var(--accent-blue) 0deg, var(--border-color) 0deg)`;
         }
+    }
+
+    // Populate Career Brief
+    const careerBriefItems = document.getElementById('career-brief-items');
+    if (careerBriefItems) {
+        careerBriefItems.innerHTML = `
+            <div class="b-item"><span class="emoji">🎯</span> You have set ${profileData.targetRole ? 'a target role' : 'no target role yet'}.</div>
+            <div class="b-item"><span class="emoji">💼</span> You have ${Object.keys(profileData.skills || {}).length} documented skills.</div>
+            <div class="b-item"><span class="emoji">🔥</span> Your industry readiness is ${profileData.readiness || 0}%.</div>
+        `;
     }
 }
