@@ -8,15 +8,17 @@ import { doc, getDoc, setDoc } from "https://www.gstatic.com/firebasejs/10.9.0/f
  */
 export async function requireAuth(callback) {
     try {
-        // 1. Check URL for a passed user ID from the main project (e.g., student-home.html?uid=12345)
+        // 1. Check URL for passed user ID and name (e.g., student-home.html?uid=12345&name=Aman)
         const urlParams = new URLSearchParams(window.location.search);
         let targetUid = urlParams.get('uid');
+        let targetName = urlParams.get('name');
         let isDemo = false;
 
         // 2. If no ID is passed, default to the demo user so the portal doesn't break during the presentation
         if (!targetUid) {
             console.log("No uid passed in URL. Falling back to Demo User for seamless entry.");
             targetUid = "demo-user-123";
+            targetName = "Priya";
             isDemo = true;
         }
 
@@ -28,7 +30,7 @@ export async function requireAuth(callback) {
         const mockUser = { 
             uid: targetUid, 
             email: isDemo ? "demo@example.com" : "student@ansora.com", 
-            displayName: isDemo ? "Priya" : "Student" 
+            displayName: targetName || "Student" 
         };
 
         if (!docSnap.exists()) {
