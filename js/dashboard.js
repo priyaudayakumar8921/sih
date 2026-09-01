@@ -47,7 +47,12 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 async function renderDashboard(profileData) {
-    document.getElementById('greeting-name').textContent = `Good morning, ${profileData.name || 'Student'} 👋`;
+    const hour = new Date().getHours();
+    let timeGreeting = "Good evening";
+    if (hour >= 5 && hour < 12) timeGreeting = "Good morning";
+    else if (hour >= 12 && hour < 17) timeGreeting = "Good afternoon";
+
+    document.getElementById('greeting-name').textContent = `${timeGreeting}, ${profileData.name || 'Student'} 👋`;
     
     const avatarImg = document.getElementById('avatar-img');
     if (avatarImg) {
