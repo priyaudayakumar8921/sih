@@ -47,7 +47,10 @@ export async function requireAuth(callback) {
             await setDoc(docRef, defaultProfile);
             callback(mockUser, defaultProfile);
         } else {
-            callback(mockUser, docSnap.data());
+            const data = docSnap.data();
+            // Force the name to "Student" if this is the demo fallback, overriding any cached "Priya" data
+            if (isDemo) data.name = "Student";
+            callback(mockUser, data);
         }
     } catch (error) {
         console.error("Error fetching user profile:", error);
