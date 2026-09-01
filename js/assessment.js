@@ -9,6 +9,13 @@ let currentQuestionIndex = 0;
 let userAnswers = {};
 let score = 0;
 
+// ==========================================
+// AI ASSESSMENT ENGINE CONFIGURATION
+// ==========================================
+// Paste your Gemini/OpenAI API key here to enable dynamic generation
+const AI_API_KEY = ""; 
+// ==========================================
+
 document.addEventListener('DOMContentLoaded', () => {
     requireAuth(async (user, profileData) => {
         currentUser = user;
@@ -24,35 +31,41 @@ document.addEventListener('DOMContentLoaded', () => {
 
 async function loadQuestions() {
     try {
-        document.getElementById('question-text').textContent = "Connecting to AI Assessment Engine...";
-        document.getElementById('question-counter').textContent = "Initializing...";
+        const questionTextEl = document.getElementById('question-text');
+        const optionsListEl = document.getElementById('options-list');
         
-        // TODO: Replace this block with your actual AI API fetch call once connected with main app
-        // Example:
-        // const response = await fetch('https://your-main-app.com/api/generate-questions', {
-        //     method: 'POST',
-        //     body: JSON.stringify({ userId: currentUser.uid, targetRole: currentProfile.targetRole })
-        // });
-        // questions = await response.json();
+        questionTextEl.innerHTML = `<i class="fa-solid fa-spinner fa-spin text-accent" style="margin-right: 10px;"></i> Generating personalized assessment...`;
+        document.getElementById('question-counter').textContent = "AI Engine Connecting...";
+        optionsListEl.innerHTML = '';
+        
+        if (!AI_API_KEY) {
+            questionTextEl.innerHTML = `<i class="fa-solid fa-triangle-exclamation text-warning" style="margin-right: 10px; color: var(--warning);"></i> AI API Key Required`;
+            optionsListEl.innerHTML = `<p class="text-secondary">To generate dynamic assessment questions, please insert your AI API Key into <code>js/assessment.js</code> (line 12).</p>`;
+            return;
+        }
 
-        // Temporary placeholder to prevent app crash until API is connected
-        questions = [
-            {
-                id: "ai-placeholder",
-                category: "AI API Integration",
-                text: "The AI Assessment Engine is ready to be connected. (Waiting for API integration)",
-                options: [
-                    { id: "A", text: "Connect API Endpoint" },
-                    { id: "B", text: "Pass Context" }
-                ],
-                correct: "A"
-            }
-        ];
+        // ==========================================
+        // API FETCH LOGIC (Example for Gemini API)
+        // ==========================================
+        /*
+        const prompt = `Generate 5 multiple-choice questions for a ${currentProfile.targetRole} role. Return ONLY a JSON array of objects with keys: id, category, text, options (array of {id: "A", text: "..."}), correct (A/B/C/D).`;
+        const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${AI_API_KEY}`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ contents: [{ parts: [{ text: prompt }] }] })
+        });
+        const data = await response.json();
+        // Parse the JSON string returned by the AI
+        const rawText = data.candidates[0].content.parts[0].text.replace(/```json\n|\n```/g, '');
+        questions = JSON.parse(rawText);
+        */
+        
+        // When your API is connected and 'questions' array is populated, call:
+        // renderQuestion();
 
-        renderQuestion();
     } catch (e) {
         console.error("Error loading AI questions:", e);
-        document.getElementById('question-text').textContent = "Failed to connect to AI Assessment Engine.";
+        document.getElementById('question-text').textContent = "Failed to generate questions. Check console.";
     }
 }
 
