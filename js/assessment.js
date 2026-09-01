@@ -129,6 +129,16 @@ async function finishAssessment() {
         const skillValues = Object.values(newSkills);
         const newReadiness = skillValues.length > 0 ? Math.round(skillValues.reduce((a, b) => a + b, 0) / skillValues.length) : percentage;
 
+        // Analyze best domain
+        let bestDomain = "General";
+        let highestScore = -1;
+        for (const [domain, score] of Object.entries(newSkills)) {
+            if (score > highestScore) {
+                highestScore = score;
+                bestDomain = domain;
+            }
+        }
+
         const docRef = doc(db, "students", currentUser.uid);
         await updateDoc(docRef, {
             skills: newSkills,
@@ -141,9 +151,10 @@ async function finishAssessment() {
                 <h1>Assessment Complete!</h1>
                 <p style="color: var(--text-secondary); margin-bottom: 2rem;">Your Skill DNA has been updated.</p>
                 
-                <div style="display: grid; grid-template-columns: 1fr; gap: 1rem; max-width: 300px; margin: 0 auto 2rem;">
-                    <div style="background: rgba(255,255,255,0.05); padding: 1rem; border-radius: 8px;">Score: <strong class="text-accent">${percentage}%</strong></div>
+                <div style="display: grid; grid-template-columns: 1fr; gap: 1rem; max-width: 350px; margin: 0 auto 2rem;">
+                    <div style="background: rgba(255,255,255,0.05); padding: 1rem; border-radius: 8px;">Overall Score: <strong class="text-accent">${percentage}%</strong></div>
                     <div style="background: rgba(255,255,255,0.05); padding: 1rem; border-radius: 8px;">New Readiness: <strong class="text-accent">${newReadiness}%</strong></div>
+                    <div style="background: rgba(201,162,39,0.1); border: 1px solid var(--accent-blue); padding: 1rem; border-radius: 8px;">Strongest Domain: <strong class="text-accent">${bestDomain}</strong></div>
                 </div>
                 
                 <button class="btn-primary-small" style="padding: 1rem 2rem; font-size: 1.1rem;" onclick="window.location.href='roadmap.html'">Build My Roadmap</button>
