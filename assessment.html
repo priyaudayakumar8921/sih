@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Skill Assessment - SkillBridge</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/assessment.css">
+</head>
+<body class="dark-theme">
+    
+    <aside class="sidebar">
+        <!-- Sidebar Content -->
+        <div class="sidebar-header">
+            <div class="logo">
+                <i class="fa-solid fa-layer-group text-accent"></i>
+                <h2>SkillBridge</h2>
+            </div>
+        </div>
+        <nav class="sidebar-nav">
+            <ul class="nav-links">
+                <li><a href="student-home.html"><i class="fa-solid fa-house"></i> Overview</a></li>
+                <li><a href="skill-intelligence.html"><i class="fa-solid fa-brain"></i> Skill Intelligence</a></li>
+                <li class="active"><a href="assessment.html"><i class="fa-solid fa-list-check"></i> Skill Assessment</a></li>
+                <li><a href="compass.html"><i class="fa-regular fa-compass"></i> Career Compass</a></li>
+                <li><a href="roadmap.html"><i class="fa-solid fa-map-location-dot"></i> My Roadmap</a></li>
+                <li><a href="opportunities.html"><i class="fa-solid fa-briefcase"></i> Opportunities</a></li>
+                <li><a href="applications.html"><i class="fa-solid fa-paper-plane"></i> Applications</a></li>
+                <li><a href="learning.html"><i class="fa-solid fa-graduation-cap"></i> Learning Hub</a></li>
+                <li><a href="projects.html"><i class="fa-solid fa-code"></i> Projects</a></li>
+                <li><a href="certifications.html"><i class="fa-solid fa-certificate"></i> Certifications</a></li>
+                <li><a href="portfolio.html"><i class="fa-regular fa-id-badge"></i> Digital Portfolio</a></li>
+                <li><a href="achievements.html"><i class="fa-solid fa-trophy"></i> Achievements</a></li>
+            </ul>
+        </nav>
+    </aside>
+
+    <main class="main-content">
+        <header class="top-bar">
+            <div class="greeting">
+                <h1>Full Stack Assessment</h1>
+                <p class="subtext">Validating your Technical and Problem Solving skills.</p>
+            </div>
+        </header>
+
+        <div class="assessment-container">
+            <div class="progress-bar-container">
+                <div class="progress-bar" id="progress-bar"></div>
+            </div>
+            
+            <div class="adaptive-badge mb-4" style="margin-bottom: 1rem;">
+                <i class="fa-solid fa-bolt"></i> Assessment difficulty adapted to your current level.
+            </div>
+
+            <div class="question-card" id="question-card">
+                <div class="question-meta">
+                    <span id="question-counter">Question 1 / 10</span>
+                </div>
+                
+                <h2 class="question-text" id="question-text">Loading question...</h2>
+                
+                <div class="options-list" id="options-list">
+                    <!-- Options populated by JS -->
+                </div>
+            </div>
+            
+            <div class="assessment-footer">
+                <button class="btn-action" id="btn-pause" style="display:none;">Pause Assessment</button>
+                <button class="btn-primary-small" style="padding: 0.8rem 2rem; font-size: 1rem;" id="btn-next">Next Question <i class="fa-solid fa-arrow-right ml-2"></i></button>
+            </div>
+        </div>
+
+    </main>
+
+    <script type="module" src="js/assessment.js"></script>
+</body>
+</html>

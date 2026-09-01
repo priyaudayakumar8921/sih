@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Learning Hub - SkillBridge</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/opportunities.css"> <!-- Reusing grid styles -->
+</head>
+<body class="dark-theme">
+    
+    <aside class="sidebar">
+        <div class="sidebar-header">
+            <div class="logo">
+                <i class="fa-solid fa-layer-group text-accent"></i>
+                <h2>SkillBridge</h2>
+            </div>
+        </div>
+        <nav class="sidebar-nav">
+            <ul class="nav-links">
+                <li><a href="student-home.html"><i class="fa-solid fa-house"></i> Overview</a></li>
+                <li><a href="skill-intelligence.html"><i class="fa-solid fa-brain"></i> Skill Intelligence</a></li>
+                <li><a href="assessment.html"><i class="fa-solid fa-list-check"></i> Skill Assessment</a></li>
+                <li><a href="compass.html"><i class="fa-regular fa-compass"></i> Career Compass</a></li>
+                <li><a href="roadmap.html"><i class="fa-solid fa-map-location-dot"></i> My Roadmap</a></li>
+                <li><a href="opportunities.html"><i class="fa-solid fa-briefcase"></i> Opportunities</a></li>
+                <li><a href="applications.html"><i class="fa-solid fa-paper-plane"></i> Applications</a></li>
+                <li class="active"><a href="learning.html"><i class="fa-solid fa-graduation-cap"></i> Learning Hub</a></li>
+                <li><a href="projects.html"><i class="fa-solid fa-code"></i> Projects</a></li>
+                <li><a href="certifications.html"><i class="fa-solid fa-certificate"></i> Certifications</a></li>
+                <li><a href="portfolio.html"><i class="fa-regular fa-id-badge"></i> Digital Portfolio</a></li>
+                <li><a href="achievements.html"><i class="fa-solid fa-trophy"></i> Achievements</a></li>
+            </ul>
+        </nav>
+    </aside>
+
+    <main class="main-content">
+        <header class="top-bar">
+            <div class="greeting">
+                <h1>Learning Hub</h1>
+                <p class="subtext">Personalized curriculum based on your Skill Gaps.</p>
+            </div>
+        </header>
+
+        <div class="opp-filters">
+            <button class="filter-btn active">Recommended for You</button>
+            <button class="filter-btn">Courses</button>
+            <button class="filter-btn">Tutorials</button>
+        </div>
+
+        <div class="opp-grid" id="learning-grid">
+            <p class="text-secondary p-4">Loading your personalized curriculum...</p>
+        </div>
+    </main>
+
+    <script type="module" src="js/learning.js"></script>
+</body>
+</html>

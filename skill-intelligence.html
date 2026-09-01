@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Skill Intelligence - SkillBridge</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/skill-intelligence.css">
+</head>
+<body class="dark-theme">
+    
+    <!-- Sidebar (Same as student-home.html) -->
+    <aside class="sidebar">
+        <div class="sidebar-header">
+            <div class="logo">
+                <i class="fa-solid fa-layer-group text-accent"></i>
+                <h2>SkillBridge</h2>
+            </div>
+        </div>
+        <nav class="sidebar-nav">
+            <ul class="nav-links">
+                <li><a href="student-home.html"><i class="fa-solid fa-house"></i> Overview</a></li>
+                <li class="active"><a href="skill-intelligence.html"><i class="fa-solid fa-brain"></i> Skill Intelligence</a></li>
+                <li><a href="assessment.html"><i class="fa-solid fa-list-check"></i> Skill Assessment</a></li>
+                <li><a href="compass.html"><i class="fa-regular fa-compass"></i> Career Compass</a></li>
+                <li><a href="roadmap.html"><i class="fa-solid fa-map-location-dot"></i> My Roadmap</a></li>
+                <li><a href="opportunities.html"><i class="fa-solid fa-briefcase"></i> Opportunities</a></li>
+                <li><a href="applications.html"><i class="fa-solid fa-paper-plane"></i> Applications</a></li>
+                <li><a href="learning.html"><i class="fa-solid fa-graduation-cap"></i> Learning Hub</a></li>
+                <li><a href="projects.html"><i class="fa-solid fa-code"></i> Projects</a></li>
+                <li><a href="certifications.html"><i class="fa-solid fa-certificate"></i> Certifications</a></li>
+                <li><a href="portfolio.html"><i class="fa-regular fa-id-badge"></i> Digital Portfolio</a></li>
+                <li><a href="achievements.html"><i class="fa-solid fa-trophy"></i> Achievements</a></li>
+            </ul>
+        </nav>
+    </aside>
+
+    <main class="main-content">
+        <header class="top-bar">
+            <div class="greeting">
+                <h1>Your Skill Intelligence</h1>
+                <p class="subtext">Compare your capabilities with industry standards.</p>
+            </div>
+            <div class="user-actions">
+                <div class="user-avatar">
+                    <img src="https://ui-avatars.com/api/?name=Priya&background=0D8ABC&color=fff" alt="User Avatar">
+                </div>
+            </div>
+        </header>
+
+        <div class="dashboard-grid">
+            
+            <!-- Skill Radar Card -->
+            <div class="card grid-col-span-2">
+                <div class="card-header">
+                    <h3>Current Skills vs Industry Benchmark</h3>
+                    <div>
+                        <select class="role-selector" id="role-select">
+                            <option value="fullstack">Full Stack Developer</option>
+                            <option value="frontend">Frontend Developer</option>
+                            <option value="backend">Backend Developer</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="radar-container">
+                    <canvas id="skillRadarChart"></canvas>
+                </div>
+            </div>
+
+            <!-- Top Gaps -->
+            <div class="card">
+                <div class="card-header">
+                    <h3>Your Top Skill Gaps</h3>
+                </div>
+                <div class="gap-list" id="gap-list">
+                    <!-- Populated by JS -->
+                </div>
+            </div>
+
+            <!-- Skill DNA -->
+            <div class="card grid-col-span-full mt-4 highlight-border">
+                <div class="card-header">
+                    <div>
+                        <h2>Your Skill DNA</h2>
+                        <p class="subtext">The unique combination of capabilities that defines your career profile.</p>
+                    </div>
+                </div>
+                <div class="dna-grid" id="dna-grid">
+                    <!-- Populated by JS -->
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <script src="js/skill-intelligence.js"></script>
+</body>
+</html>

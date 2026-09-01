@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SkillBridge - Student Portal</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- FontAwesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/dashboard.css">
+</head>
+<body class="dark-theme">
+    
+    <!-- Sidebar -->
+    <aside class="sidebar">
+        <div class="sidebar-header">
+            <div class="logo">
+                <i class="fa-solid fa-layer-group text-accent"></i>
+                <h2>SkillBridge</h2>
+            </div>
+        </div>
+
+        <nav class="sidebar-nav">
+            <ul class="nav-links">
+                <li class="active"><a href="student-home.html"><i class="fa-solid fa-house"></i> Overview</a></li>
+                <li><a href="skill-intelligence.html"><i class="fa-solid fa-brain"></i> Skill Intelligence</a></li>
+                <li><a href="assessment.html"><i class="fa-solid fa-list-check"></i> Skill Assessment</a></li>
+                <li><a href="compass.html"><i class="fa-regular fa-compass"></i> Career Compass</a></li>
+                <li><a href="roadmap.html"><i class="fa-solid fa-map-location-dot"></i> My Roadmap</a></li>
+                <li><a href="opportunities.html"><i class="fa-solid fa-briefcase"></i> Opportunities</a></li>
+                <li><a href="applications.html"><i class="fa-solid fa-paper-plane"></i> Applications</a></li>
+                <li><a href="learning.html"><i class="fa-solid fa-graduation-cap"></i> Learning Hub</a></li>
+                <li><a href="projects.html"><i class="fa-solid fa-code"></i> Projects</a></li>
+                <li><a href="certifications.html"><i class="fa-solid fa-certificate"></i> Certifications</a></li>
+                <li><a href="portfolio.html"><i class="fa-regular fa-id-badge"></i> Digital Portfolio</a></li>
+                <li><a href="achievements.html"><i class="fa-solid fa-trophy"></i> Achievements</a></li>
+            </ul>
+
+            <ul class="nav-links bottom-links">
+                <li><a href="notifications.html"><i class="fa-regular fa-bell"></i> Notifications</a></li>
+                <li><a href="profile.html"><i class="fa-regular fa-user"></i> Profile</a></li>
+                <li><a href="settings.html"><i class="fa-solid fa-gear"></i> Settings</a></li>
+                <li><a href="#" id="logout-btn"><i class="fa-solid fa-arrow-right-from-bracket"></i> Logout</a></li>
+            </ul>
+        </nav>
+
+        <div class="sidebar-footer">
+            <div class="stats-mini">
+                <div class="stat-row">
+                    <span>Industry Readiness</span>
+                    <span class="text-accent font-bold" id="sidebar-readiness">82%</span>
+                </div>
+                <div class="stat-progress"><div class="progress-fill" style="width: 82%;"></div></div>
+                
+                <div class="stat-row mt-2">
+                    <span>Profile completion</span>
+                    <span class="text-green font-bold">91%</span>
+                </div>
+                <div class="stat-progress"><div class="progress-fill green-fill" style="width: 91%;"></div></div>
+            </div>
+        </div>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <!-- Top Bar -->
+        <header class="top-bar">
+            <div class="greeting">
+                <h1 id="greeting-name">Good morning, Priya 👋</h1>
+                <p class="subtext">Here's your career intelligence for today.</p>
+            </div>
+            <div class="user-actions">
+                <div class="notification-bell">
+                    <i class="fa-regular fa-bell"></i>
+                    <span class="badge">3</span>
+                </div>
+                <div class="user-avatar">
+                    <img src="https://ui-avatars.com/api/?name=Priya&background=0D8ABC&color=fff" alt="User Avatar">
+                </div>
+            </div>
+        </header>
+
+        <!-- Dashboard Content -->
+        <div class="dashboard-grid">
+            
+            <!-- Industry Readiness Widget -->
+            <div class="card readiness-card highlight-border">
+                <div class="card-header">
+                    <h3>Industry Readiness</h3>
+                    <div class="trend positive"><i class="fa-solid fa-arrow-trend-up"></i> +8% this month</div>
+                </div>
+                <div class="circular-progress-container">
+                    <div class="circular-progress" id="readiness-circle">
+                        <div class="inner-circle">
+                            <span class="readiness-value" id="readiness-value-display">82%</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="status-text text-center">
+                    <span class="badge-status">Nearly Industry Ready</span>
+                </div>
+            </div>
+
+            <!-- Career Target Widget -->
+            <div class="card target-card">
+                <div class="card-header">
+                    <span class="label-small">TARGET ROLE</span>
+                    <button class="btn-text">Change Goal</button>
+                </div>
+                <h2 class="target-title">Full Stack Developer</h2>
+                <p class="target-industry">Industry: Software / Technology</p>
+                
+                <div class="target-stats mt-4">
+                    <div class="t-stat">
+                        <span class="t-label">Readiness</span>
+                        <span class="t-value">82%</span>
+                    </div>
+                    <div class="t-stat">
+                        <span class="t-label">Est. Time to Target</span>
+                        <span class="t-value">6 weeks</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Today's Priorities (Personalized Brief) -->
+            <div class="card priorities-card grid-col-span-2">
+                <div class="card-header">
+                    <h3><i class="fa-solid fa-bolt text-accent"></i> Today's Priorities</h3>
+                    <span class="subtext">Based on your goals and gaps</span>
+                </div>
+                <ul class="priority-list" id="priority-list">
+                    <li class="priority-item">
+                        <div class="p-icon learning"><i class="fa-solid fa-book-open"></i></div>
+                        <div class="p-content">
+                            <h4>Complete REST API assessment</h4>
+                            <p>Test your knowledge on API design</p>
+                        </div>
+                        <button class="btn-action">Start</button>
+                    </li>
+                    <li class="priority-item">
+                        <div class="p-icon coding"><i class="fa-solid fa-code"></i></div>
+                        <div class="p-content">
+                            <h4>Finish Node.js roadmap module</h4>
+                            <p>2 lessons remaining</p>
+                        </div>
+                        <button class="btn-action">Continue</button>
+                    </li>
+                    <li class="priority-item highlight-item">
+                        <div class="p-icon job"><i class="fa-solid fa-briefcase"></i></div>
+                        <div class="p-content">
+                            <h4>Apply to MERN Developer Internship</h4>
+                            <p>92% Match • Deadline in 2 days</p>
+                        </div>
+                        <button class="btn-primary-small">Apply Now</button>
+                    </li>
+                    <li class="priority-item">
+                        <div class="p-icon project"><i class="fa-brands fa-github"></i></div>
+                        <div class="p-content">
+                            <h4>Update GitHub project</h4>
+                            <p>Strengthen your portfolio</p>
+                        </div>
+                        <button class="btn-action">Update</button>
+                    </li>
+                </ul>
+            </div>
+
+            <!-- Readiness Breakdown -->
+            <div class="section-title grid-col-span-full mt-4">
+                <h2>Readiness Breakdown</h2>
+            </div>
+            
+            <div class="breakdown-grid grid-col-span-full">
+                <!-- Breakdown cards will be generated by JS -->
+            </div>
+            
+            <!-- Career Brief Summary -->
+            <div class="card brief-card grid-col-span-full mt-2">
+                <div class="card-header">
+                    <h3>Your Career Brief</h3>
+                </div>
+                <div class="brief-items">
+                    <div class="b-item"><span class="emoji">🎯</span> 2 skill gaps need attention</div>
+                    <div class="b-item"><span class="emoji">💼</span> 3 new opportunities match your profile</div>
+                    <div class="b-item"><span class="emoji">📚</span> 1 recommended workshop</div>
+                    <div class="b-item"><span class="emoji">📋</span> 2 applications require action</div>
+                    <div class="b-item"><span class="emoji">🔥</span> Your readiness increased 4% this week</div>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <!-- Copilot Floating Button -->
+    <div class="copilot-fab">
+        <i class="fa-solid fa-wand-magic-sparkles"></i>
+    </div>
+
+    <script type="module" src="js/dashboard.js"></script>
+</body>
+</html>
