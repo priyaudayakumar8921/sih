@@ -40,22 +40,29 @@
     <main class="main-content">
         <header class="top-bar">
             <div class="greeting">
-                <h1>Digital Employability Portfolio</h1>
-                <p class="subtext">Your verified professional identity.</p>
+                <h1>Your Digital Portfolio</h1>
+                <p class="subtext">Showcase your verified skills and achievements.</p>
+            </div>
+            <div class="user-actions">
+                <button class="btn-action"><i class="fa-solid fa-share-nodes"></i> Share</button>
+                <button class="btn-primary-small"><i class="fa-solid fa-download"></i> PDF</button>
+                <div class="user-avatar" style="margin-left: 1rem;">
+                    <img id="avatar-img" src="https://ui-avatars.com/api/?name=Student&background=C9A227&color=fff" alt="User Avatar">
+                </div>
             </div>
         </header>
 
         <div class="portfolio-header">
             <div class="profile-img-container">
-                <img src="https://ui-avatars.com/api/?name=Priya&background=0D8ABC&color=fff&size=150" alt="Priya" class="profile-img">
+                <img id="portfolio-avatar" src="https://ui-avatars.com/api/?name=Student&background=0D8ABC&color=fff&size=150" alt="Student" class="profile-img">
             </div>
             <div class="profile-info">
-                <h1>Priya</h1>
-                <div class="profile-title">Full Stack Developer</div>
+                <h1 id="portfolio-name">Loading Profile...</h1>
+                <div class="profile-title" id="portfolio-role">Target Role Loading...</div>
                 <div class="profile-meta">
-                    <div><i class="fa-solid fa-location-dot"></i> Bangalore, India</div>
-                    <div><i class="fa-solid fa-graduation-cap"></i> B.Tech Computer Science '27</div>
-                    <div><i class="fa-brands fa-github"></i> github.com/priya-dev</div>
+                    <div><i class="fa-solid fa-location-dot"></i> Location not set</div>
+                    <div><i class="fa-solid fa-graduation-cap"></i> Education not set</div>
+                    <div><i class="fa-brands fa-github"></i> No Github linked</div>
                 </div>
             </div>
             <div class="portfolio-actions">
@@ -72,19 +79,8 @@
                     <button class="btn-text">+ Add Project</button>
                 </div>
                 
-                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem;">
-                    <div class="project-card">
-                        <div class="project-img"><i class="fa-solid fa-code"></i></div>
-                        <div class="project-content">
-                            <div class="impact-score"><i class="fa-solid fa-bolt"></i> Impact: 82/100</div>
-                            <h3 class="project-title">Internship Management REST API</h3>
-                            <p class="project-desc">Built a secure REST API using Node.js, Express, and MongoDB to manage internship postings and applications.</p>
-                            <div style="display: flex; gap: 0.5rem;">
-                                <span class="badge-status" style="background: rgba(255,255,255,0.1); color: white;">Node.js</span>
-                                <span class="badge-status" style="background: rgba(255,255,255,0.1); color: white;">MongoDB</span>
-                            </div>
-                        </div>
-                    </div>
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem;" id="projects-container">
+                    <p class="text-secondary" style="grid-column: 1/-1;">No verified projects added yet.</p>
                 </div>
             </div>
 
@@ -99,23 +95,7 @@
                 <div id="upload-status" style="display: none; color: var(--accent-blue); font-size: 0.9rem; margin-bottom: 1rem;"><i class="fa-solid fa-spinner fa-spin"></i> Uploading to Cloudinary...</div>
                 
                 <div id="certs-container">
-                    <div class="cert-card">
-                        <div class="cert-icon"><i class="fa-solid fa-award"></i></div>
-                        <div class="cert-info">
-                            <h3>React Developer Certification</h3>
-                            <p>Issued by Meta • Valid till 2029</p>
-                        </div>
-                        <div class="verified-badge"><i class="fa-solid fa-check"></i> Verified</div>
-                    </div>
-                    
-                    <div class="cert-card">
-                        <div class="cert-icon"><i class="fa-solid fa-certificate"></i></div>
-                        <div class="cert-info">
-                            <h3>JavaScript Algorithms</h3>
-                            <p>Issued by FreeCodeCamp</p>
-                        </div>
-                        <div class="verified-badge" style="background: rgba(245, 158, 11, 0.1); color: var(--warning);"><i class="fa-regular fa-clock"></i> Pending</div>
-                    </div>
+                    <p class="text-secondary">No certifications uploaded yet.</p>
                 </div>
             </div>
         </div>

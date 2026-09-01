@@ -18,7 +18,7 @@ export async function requireAuth(callback) {
         if (!targetUid) {
             console.log("No uid passed in URL. Falling back to Demo User for seamless entry.");
             targetUid = "demo-user-123";
-            targetName = "Priya";
+            targetName = "Student";
             isDemo = true;
         }
 
