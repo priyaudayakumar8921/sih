@@ -58,6 +58,19 @@ function renderRoadmap() {
         skillGaps[0].status = 'active';
     }
 
+    // Update Top Progress Bar Text
+    const totalSkills = completedSkills.length + skillGaps.length;
+    const progressPercent = totalSkills === 0 ? 0 : Math.round((completedSkills.length / totalSkills) * 100);
+    const progressTitleEl = document.getElementById('roadmap-progress-title');
+    const progressDescEl = document.getElementById('roadmap-progress-desc');
+    
+    if (progressTitleEl) progressTitleEl.textContent = `${progressPercent}% Completed`;
+    if (progressDescEl) {
+        if (progressPercent === 100) progressDescEl.textContent = "Incredible! You've mastered all target skills.";
+        else if (progressPercent > 50) progressDescEl.textContent = "You are making excellent progress towards your goal.";
+        else progressDescEl.textContent = "You're just getting started on your journey.";
+    }
+
     const phases = [
         {
             id: 1,

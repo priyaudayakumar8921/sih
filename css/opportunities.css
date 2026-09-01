@@ -5,20 +5,19 @@
     flex-wrap: wrap;
 }
 .filter-btn {
-    background: rgba(255, 255, 255, 0.03);
+    background: var(--bg-card);
     border: 1px solid var(--border-color);
     color: var(--text-secondary);
     padding: 0.6rem 1.5rem;
     border-radius: 30px;
     cursor: pointer;
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    transition: all 0.2s ease;
     font-weight: 500;
 }
 .filter-btn.active, .filter-btn:hover {
-    background: rgba(6, 182, 212, 0.1);
-    border-color: var(--accent-cyan);
-    color: var(--text-primary);
-    box-shadow: 0 0 15px rgba(6, 182, 212, 0.2);
+    background: var(--ansora-graphite);
+    border-color: var(--ansora-graphite);
+    color: var(--ansora-pure-white);
 }
 
 .opp-grid {
@@ -28,30 +27,30 @@
 }
 
 .opp-card {
-    background: rgba(255, 255, 255, 0.02);
-    backdrop-filter: blur(10px);
+    background: var(--bg-card);
     border: 1px solid var(--border-color);
-    border-radius: 20px;
+    border-radius: 12px;
     padding: 1.5rem;
     display: flex;
     flex-direction: column;
-    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    transition: all 0.2s ease;
     position: relative;
     overflow: hidden;
+    box-shadow: var(--shadow-soft);
 }
 
 .opp-card:hover {
-    transform: translateY(-6px);
-    box-shadow: var(--shadow-glow);
-    border-color: var(--border-glow);
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-hover);
+    border-color: var(--ansora-graphite);
 }
 
 .match-badge {
     position: absolute;
     top: 1rem;
     right: 1rem;
-    background: linear-gradient(90deg, var(--accent-cyan), var(--accent-blue));
-    color: white;
+    background: var(--ansora-strategic-gold);
+    color: var(--ansora-deep-black);
     padding: 0.3rem 0.8rem;
     border-radius: 12px;
     font-size: 0.8rem;
@@ -72,9 +71,9 @@
 .opp-meta i { color: var(--text-secondary); width: 20px; }
 
 .opp-match-reason {
-    background: rgba(0, 0, 0, 0.2);
-    border: 1px solid rgba(255, 255, 255, 0.05);
-    border-radius: 12px;
+    background: var(--bg-main);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
     padding: 1.25rem;
     margin-bottom: 1.5rem;
     flex-grow: 1;

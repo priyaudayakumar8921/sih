@@ -72,25 +72,25 @@
 }
 
 .cert-card {
-    background: rgba(255, 255, 255, 0.02);
-    backdrop-filter: blur(10px);
+    background: var(--bg-card);
     border: 1px solid var(--border-color);
     padding: 1.5rem;
-    border-radius: 20px;
+    border-radius: 12px;
     display: flex;
     align-items: center;
     gap: 1.25rem;
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    transition: all 0.2s ease;
     position: relative;
     overflow: hidden;
     margin-bottom: 1rem;
+    box-shadow: var(--shadow-soft);
 }
 
 .cert-card:hover {
-    transform: translateX(6px);
-    border-color: var(--border-glow);
-    background: rgba(255, 255, 255, 0.04);
-    box-shadow: -5px 5px 20px rgba(0, 0, 0, 0.2);
+    transform: translateY(-2px);
+    border-color: var(--ansora-strategic-gold);
+    background: var(--bg-card-hover);
+    box-shadow: var(--shadow-hover);
 }
 .cert-icon { font-size: 2.5rem; color: var(--warning); }
 .cert-info h3 { margin-bottom: 0.2rem; }

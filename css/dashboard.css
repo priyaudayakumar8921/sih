@@ -98,17 +98,16 @@
 .priority-item {
     display: flex;
     align-items: center;
-    background: rgba(255, 255, 255, 0.02);
-    backdrop-filter: blur(5px);
+    background: var(--bg-main);
     padding: 1rem;
-    border-radius: 16px;
+    border-radius: 12px;
     gap: 1rem;
     border: 1px solid var(--border-color);
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    transition: all 0.2s ease;
 }
 .priority-item:hover { 
-    background: rgba(255, 255, 255, 0.05);
-    border-color: var(--border-glow);
+    background: var(--bg-card-hover);
+    border-color: var(--ansora-graphite);
     transform: translateX(4px);
 }
 .highlight-item {
@@ -144,19 +143,19 @@
 }
 
 .b-card {
-    background: rgba(255, 255, 255, 0.02);
+    background: var(--bg-card);
     border: 1px solid var(--border-color);
     padding: 1.5rem 1rem;
-    border-radius: 16px;
+    border-radius: 12px;
     text-align: center;
     cursor: pointer;
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    transition: all 0.2s ease;
 }
 .b-card:hover { 
-    border-color: var(--border-glow); 
-    background: rgba(255, 255, 255, 0.05);
+    border-color: var(--ansora-strategic-gold); 
+    background: var(--bg-card-hover);
     transform: translateY(-4px);
-    box-shadow: var(--shadow-glow);
+    box-shadow: var(--shadow-hover);
 }
 .b-title { font-size: 0.8rem; color: var(--text-secondary); margin-bottom: 0.5rem; display: block; }
 .b-val { font-size: 1.4rem; font-weight: bold; }

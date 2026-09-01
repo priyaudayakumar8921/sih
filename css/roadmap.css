@@ -65,22 +65,22 @@
 }
 
 .task-card {
-    background: rgba(255, 255, 255, 0.02);
-    backdrop-filter: blur(10px);
+    background: var(--bg-card);
     border: 1px solid var(--border-color);
-    border-radius: 16px;
+    border-radius: 12px;
     padding: 1.2rem;
     display: flex;
     align-items: center;
     gap: 1rem;
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    transition: all 0.2s ease;
+    box-shadow: var(--shadow-soft);
 }
 
 .task-card:hover {
-    border-color: var(--border-glow);
-    background: rgba(255, 255, 255, 0.05);
-    transform: translateX(4px);
-    box-shadow: -4px 4px 15px rgba(0,0,0,0.1);
+    border-color: var(--ansora-graphite);
+    background: var(--bg-card-hover);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-hover);
 }
 
 .task-status {
@@ -107,16 +107,15 @@
 
 /* Progress Header */
 .roadmap-progress {
-    background: rgba(255, 255, 255, 0.02);
-    backdrop-filter: blur(10px);
+    background: var(--bg-card);
     padding: 2rem;
-    border-radius: 20px;
+    border-radius: 16px;
     border: 1px solid var(--border-color);
     margin-bottom: 3rem;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    box-shadow: var(--shadow-glass);
+    box-shadow: var(--shadow-soft);
 }
 
-.progress-text h2 { font-size: 2rem; background: linear-gradient(90deg, var(--accent-cyan), var(--accent-blue)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+.progress-text h2 { font-size: 2rem; color: var(--ansora-strategic-gold); }

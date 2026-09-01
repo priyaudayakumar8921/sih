@@ -22,20 +22,21 @@
 }
 
 .gap-item {
-    background: rgba(255, 255, 255, 0.02);
-    backdrop-filter: blur(10px);
+    background: var(--bg-card);
     border: 1px solid var(--border-color);
-    border-radius: 16px;
+    border-radius: 12px;
     padding: 1.5rem;
     display: flex;
     align-items: flex-start;
     gap: 1.5rem;
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    transition: all 0.2s ease;
+    box-shadow: var(--shadow-soft);
 }
 .gap-item:hover {
-    background: rgba(255, 255, 255, 0.05);
-    border-color: var(--border-glow);
-    transform: translateX(4px);
+    background: var(--bg-card-hover);
+    border-color: var(--ansora-graphite);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-hover);
 }
 
 .gap-item.critical {
@@ -75,22 +76,22 @@
 }
 
 .dna-cell {
-    background: rgba(255, 255, 255, 0.02);
-    backdrop-filter: blur(10px);
+    background: var(--bg-card);
     border: 1px solid var(--border-color);
-    border-radius: 16px;
+    border-radius: 12px;
     padding: 1.5rem;
     display: flex;
     flex-direction: column;
     align-items: center;
     text-align: center;
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    transition: all 0.2s ease;
+    box-shadow: var(--shadow-soft);
 }
 .dna-cell:hover {
-    transform: translateY(-5px);
-    border-color: var(--border-glow);
-    box-shadow: var(--shadow-glow);
-    background: rgba(255, 255, 255, 0.05);
+    transform: translateY(-4px);
+    border-color: var(--ansora-strategic-gold);
+    box-shadow: var(--shadow-hover);
+    background: var(--bg-card-hover);
 }
 .dna-cell i { font-size: 2rem; margin-bottom: 0.5rem; }
 .dna-strength {
@@ -103,5 +104,5 @@
 }
 .dna-strength-fill {
     height: 100%;
-    background: linear-gradient(90deg, var(--accent-cyan), var(--accent-blue));
+    background: var(--ansora-strategic-gold);
 }

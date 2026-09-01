@@ -1,34 +1,39 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;500;600;700;800&display=swap');
 
 :root {
-    /* Premium Dark Theme with Glassmorphism */
-    --bg-main: #09090b; /* Deep Zinc 950 */
-    --bg-card: rgba(255, 255, 255, 0.03); /* Translucent */
-    --bg-card-hover: rgba(255, 255, 255, 0.06);
-    --bg-sidebar: #09090b; /* Deep Dark */
+    /* ANSORA Brand Identity Palette */
+    --ansora-rich-white: #FAFAF8;
+    --ansora-deep-black: #0B0B0D;
+    --ansora-graphite: #1E1E22;
+    --ansora-soft-grey: #F3F4F6;
+    --ansora-strategic-gold: #C9A227;
+    --ansora-pure-white: #FFFFFF;
+
+    /* Semantic Mappings */
+    --bg-main: var(--ansora-rich-white);
+    --bg-card: var(--ansora-pure-white); /* White for clean contrast against Rich White */
+    --bg-card-hover: var(--ansora-soft-grey);
+    --bg-sidebar: var(--ansora-deep-black);
     
-    --text-primary: #f8fafc; /* Slate 50 */
-    --text-secondary: #94a3b8; /* Slate 400 */
+    --text-primary: var(--ansora-deep-black);
+    --text-secondary: var(--ansora-graphite);
     
-    /* Vibrant Neon Accents */
-    --accent-gold: #f59e0b; /* Amber 500 */
-    --accent-blue: #0ea5e9; /* Light Blue 500 */
-    --accent-cyan: #06b6d4; /* Cyan 500 */
-    --accent-purple: #8b5cf6; /* Violet 500 */
+    /* Mapping existing accent variables to ANSORA Gold */
+    --accent-blue: var(--ansora-strategic-gold);
+    --accent-cyan: var(--ansora-strategic-gold);
+    --accent-blue-dim: rgba(201, 162, 39, 0.1);
     
-    --accent-gradient: linear-gradient(135deg, var(--accent-cyan), var(--accent-blue));
-    --accent-glow: rgba(6, 182, 212, 0.4);
-    
+    /* System Colors */
     --success: #10b981;
-    --warning: #f59e0b;
+    --warning: var(--ansora-strategic-gold);
     --danger: #ef4444;
     
-    --border-color: rgba(255, 255, 255, 0.08); /* Subtle glass border */
-    --border-glow: rgba(255, 255, 255, 0.15);
+    --border-color: #E5E7EB; /* Subtle line */
+    --border-glow: var(--ansora-strategic-gold);
     
-    --sidebar-border: rgba(255, 255, 255, 0.05);
-    --sidebar-text: #f1f5f9;
-    --sidebar-text-muted: #64748b;
+    --sidebar-border: #1E1E22;
+    --sidebar-text: var(--ansora-pure-white);
+    --sidebar-text-muted: #8E8E93;
     --sidebar-width: 280px;
     
     /* Typography */
@@ -36,8 +41,8 @@
     --font-heading: 'Outfit', sans-serif;
     
     /* Shadows */
-    --shadow-glass: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
-    --shadow-glow: 0 0 20px 0 var(--accent-glow);
+    --shadow-soft: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+    --shadow-hover: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
 }
 
 * {
@@ -53,18 +58,11 @@ body {
     display: flex;
     min-height: 100vh;
     overflow-x: hidden;
-    /* Subtle background mesh gradient effect */
-    background-image: 
-        radial-gradient(at 0% 0%, rgba(6, 182, 212, 0.1) 0px, transparent 50%),
-        radial-gradient(at 100% 100%, rgba(139, 92, 246, 0.1) 0px, transparent 50%);
-    background-attachment: fixed;
 }
 
 /* Utilities */
 .text-accent { 
-    background: var(--accent-gradient);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
+    color: var(--ansora-strategic-gold);
     font-weight: 700;
 }
 .text-green { color: var(--success); }
@@ -86,44 +84,41 @@ h1, h2, h3, h4, h5, h6 {
     font-family: var(--font-heading);
     font-weight: 600;
     letter-spacing: -0.02em;
+    color: var(--ansora-deep-black);
 }
-p { line-height: 1.6; }
+p { line-height: 1.6; color: var(--ansora-graphite); }
 
-/* Reusable Glass Card */
+/* Solid Architectural Card */
 .card {
     background: var(--bg-card);
-    backdrop-filter: blur(16px);
-    -webkit-backdrop-filter: blur(16px);
     border: 1px solid var(--border-color);
-    border-radius: 20px;
+    border-radius: 12px;
     padding: 1.5rem;
-    box-shadow: var(--shadow-glass);
-    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.3s ease, border-color 0.3s ease;
+    box-shadow: var(--shadow-soft);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
 .card:hover {
-    transform: translateY(-4px);
-    border-color: var(--border-glow);
-    box-shadow: 0 10px 40px -10px rgba(0, 0, 0, 0.5);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-hover);
 }
 
 .highlight-border {
     position: relative;
+    overflow: hidden;
 }
 .highlight-border::before {
     content: '';
     position: absolute;
     top: 0; left: 0; right: 0;
-    height: 2px;
-    background: var(--accent-gradient);
-    border-radius: 20px 20px 0 0;
+    height: 3px;
+    background: var(--ansora-strategic-gold);
 }
 
 /* Sidebar */
 .sidebar {
     width: var(--sidebar-width);
-    background-color: rgba(9, 9, 11, 0.8);
-    backdrop-filter: blur(20px);
+    background-color: var(--bg-sidebar);
     border-right: 1px solid var(--sidebar-border);
     position: fixed;
     height: 100vh;
@@ -148,12 +143,11 @@ p { line-height: 1.6; }
     letter-spacing: -0.5px; 
     font-weight: 800;
     font-family: var(--font-heading);
+    color: var(--ansora-pure-white);
 }
 .logo i { 
     font-size: 1.75rem; 
-    background: var(--accent-gradient);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
+    color: var(--ansora-strategic-gold);
 }
 
 .sidebar-nav {
@@ -179,34 +173,59 @@ p { line-height: 1.6; }
     padding: 0.85rem 1.25rem;
     color: var(--sidebar-text-muted);
     text-decoration: none;
-    border-radius: 12px;
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    border-radius: 8px;
+    transition: all 0.2s ease;
     font-size: 0.95rem;
     font-weight: 500;
 }
 
 .nav-links li a i {
     font-size: 1.1rem;
-    transition: transform 0.3s ease, color 0.3s ease;
+    transition: transform 0.2s ease, color 0.2s ease;
 }
 
 .nav-links li a:hover {
-    background-color: rgba(255,255,255,0.03);
-    color: var(--text-primary);
+    background-color: var(--ansora-graphite);
+    color: var(--ansora-pure-white);
 }
 .nav-links li a:hover i {
-    transform: scale(1.1);
-    color: var(--accent-cyan);
+    color: var(--ansora-strategic-gold);
 }
 
 .nav-links li.active a {
-    background: linear-gradient(90deg, rgba(6, 182, 212, 0.1), transparent);
-    color: var(--text-primary);
-    border-left: 3px solid var(--accent-cyan);
-    box-shadow: inset 1px 0 10px rgba(6, 182, 212, 0.05);
+    background-color: var(--ansora-graphite);
+    color: var(--ansora-pure-white);
+    border-left: 3px solid var(--ansora-strategic-gold);
 }
 .nav-links li.active a i {
-    color: var(--accent-cyan);
+    color: var(--ansora-strategic-gold);
+}
+
+/* Sidebar Footer */
+.sidebar-footer {
+    padding: 1.5rem 2rem;
+    border-top: 1px solid var(--sidebar-border);
+    color: var(--sidebar-text-muted);
+}
+.stat-row {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.85rem;
+    margin-bottom: 0.5rem;
+}
+.stat-progress {
+    height: 6px;
+    background-color: var(--sidebar-border);
+    border-radius: 3px;
+    overflow: hidden;
+}
+.progress-fill {
+    height: 100%;
+    background: var(--ansora-strategic-gold);
+    border-radius: 3px;
+}
+.green-fill {
+    background: var(--success);
 }
 
 /* Main Content */
@@ -215,12 +234,6 @@ p { line-height: 1.6; }
     flex-grow: 1;
     padding: 2.5rem 4rem;
     max-width: calc(100vw - var(--sidebar-width));
-    animation: fadeIn 0.6s ease-out forwards;
-}
-
-@keyframes fadeIn {
-    from { opacity: 0; transform: translateY(10px); }
-    to { opacity: 1; transform: translateY(0); }
 }
 
 .top-bar {
@@ -244,16 +257,40 @@ p { line-height: 1.6; }
     align-items: center;
     gap: 1.5rem;
 }
+.notification-bell {
+    position: relative;
+    cursor: pointer;
+    font-size: 1.2rem;
+    color: var(--ansora-deep-black);
+}
+.badge {
+    position: absolute;
+    top: -5px;
+    right: -5px;
+    background-color: var(--ansora-strategic-gold);
+    color: var(--ansora-deep-black);
+    font-size: 0.7rem;
+    font-weight: bold;
+    padding: 2px 5px;
+    border-radius: 10px;
+}
+
+.user-avatar img {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: 2px solid var(--border-color);
+}
 
 /* Buttons */
 .btn-primary-small, .btn-action {
     padding: 0.75rem 1.5rem;
-    border-radius: 12px;
+    border-radius: 8px;
     font-weight: 600;
     font-family: var(--font-main);
     font-size: 0.9rem;
     cursor: pointer;
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    transition: all 0.2s ease;
     border: none;
     display: inline-flex;
     align-items: center;
@@ -262,32 +299,27 @@ p { line-height: 1.6; }
 }
 
 .btn-primary-small {
-    background: var(--accent-gradient);
-    color: white;
-    box-shadow: 0 4px 15px rgba(6, 182, 212, 0.3);
+    background: var(--ansora-strategic-gold);
+    color: var(--ansora-deep-black);
 }
 
 .btn-primary-small:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 6px 20px rgba(6, 182, 212, 0.5);
-    filter: brightness(1.1);
+    background: #d9b133;
 }
 
 .btn-primary-small:disabled {
     opacity: 0.7;
     cursor: not-allowed;
-    transform: none;
 }
 
 .btn-action {
-    background: rgba(255, 255, 255, 0.05);
-    color: var(--text-primary);
+    background: var(--ansora-soft-grey);
+    color: var(--ansora-deep-black);
     border: 1px solid var(--border-color);
 }
 
 .btn-action:hover {
-    background: rgba(255, 255, 255, 0.1);
-    border-color: rgba(255, 255, 255, 0.2);
+    background: #E5E7EB;
 }
 
 .btn-full {
@@ -301,6 +333,6 @@ p { line-height: 1.6; }
     cursor: default;
     width: 100%;
     padding: 0.75rem;
-    border-radius: 12px;
+    border-radius: 8px;
     font-weight: 600;
 }
