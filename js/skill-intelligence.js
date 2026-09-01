@@ -1,5 +1,5 @@
 import { db } from './firebase-config.js';
-import { collection, getDocs } from "https://www.gstatic.com/firebasejs/10.9.0/firebase-firestore.js";
+import { doc, getDoc } from "https://www.gstatic.com/firebasejs/10.9.0/firebase-firestore.js";
 import { requireAuth } from './auth-guard.js';
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -11,37 +11,25 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 async function initSkillIntelligence(profileData) {
-    let benchmarks = {};
     let currentRole = profileData.targetRole || 'fullstack';
     let radarChart;
+    let targetBenchmark = null;
 
     const studentSkills = profileData.skills || {};
     
-    // Fetch all benchmarks for the dropdown
+    // Fetch only the benchmark for the student's target role
     try {
-        const querySnapshot = await getDocs(collection(db, "benchmarks"));
-        const roleSelect = document.getElementById('role-select');
-        roleSelect.innerHTML = '';
+        const docRef = doc(db, "benchmarks", currentRole);
+        const docSnap = await getDoc(docRef);
         
-        querySnapshot.forEach((doc) => {
-            const data = doc.data();
-            benchmarks[doc.id] = data;
-            
-            // Populate select
-            const option = document.createElement('option');
-            option.value = doc.id;
-            option.textContent = data.name;
-            if (doc.id === currentRole) option.selected = true;
-            roleSelect.appendChild(option);
-        });
-        
-        // Fallback if targetRole is not in benchmarks
-        if (!benchmarks[currentRole] && Object.keys(benchmarks).length > 0) {
-            currentRole = Object.keys(benchmarks)[0];
+        if (docSnap.exists()) {
+            targetBenchmark = docSnap.data();
+            // Update the chart title dynamically to reflect the role
+            const chartTitle = document.querySelector('.card-header h3');
+            if (chartTitle) chartTitle.textContent = `Current Skills vs ${targetBenchmark.name} Benchmark`;
         }
-        
     } catch (e) {
-        console.error("Error fetching benchmarks", e);
+        console.error("Error fetching benchmark", e);
         return;
     }
 
@@ -50,10 +38,10 @@ async function initSkillIntelligence(profileData) {
     
     const chartContext = ctx.getContext('2d');
     
-    function renderChart(role) {
-        if (!benchmarks[role] || !benchmarks[role].requirements) return;
+    function renderChart() {
+        if (!targetBenchmark || !targetBenchmark.requirements) return;
         
-        const reqs = benchmarks[role].requirements;
+        const reqs = targetBenchmark.requirements;
         // Merge keys from student skills and benchmark requirements
         const allSkills = new Set([...Object.keys(studentSkills), ...Object.keys(reqs)]);
         const labels = Array.from(allSkills);
@@ -110,24 +98,20 @@ async function initSkillIntelligence(profileData) {
         });
     }
 
-    renderChart(currentRole);
-
-    document.getElementById('role-select').addEventListener('change', (e) => {
-        currentRole = e.target.value;
-        if(benchmarks[currentRole]) {
-            renderChart(currentRole);
-            renderGaps(currentRole);
-        }
-    });
+    renderChart();
 
     // Render Gaps
-    function renderGaps(role) {
+    function renderGaps() {
         const gapList = document.getElementById('gap-list');
         if (!gapList) return;
         gapList.innerHTML = '';
         
-        if (!benchmarks[role] || !benchmarks[role].requirements) return;
-        const reqs = benchmarks[role].requirements;
+        if (!targetBenchmark || !targetBenchmark.requirements) {
+            gapList.innerHTML = '<p class="text-secondary p-4">No benchmark data found to calculate gaps.</p>';
+            return;
+        }
+        
+        const reqs = targetBenchmark.requirements;
         
         let gaps = [];
         for (const [skill, req] of Object.entries(reqs)) {
@@ -165,7 +149,7 @@ async function initSkillIntelligence(profileData) {
         });
     }
     
-    renderGaps(currentRole);
+    renderGaps();
 
     // Render Skill DNA from profileData.breakdown
     const dnaGrid = document.getElementById('dna-grid');
