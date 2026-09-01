@@ -22,13 +22,20 @@
 }
 
 .gap-item {
-    background-color: var(--bg-main);
+    background: rgba(255, 255, 255, 0.02);
+    backdrop-filter: blur(10px);
     border: 1px solid var(--border-color);
-    border-radius: 12px;
+    border-radius: 16px;
     padding: 1.5rem;
     display: flex;
     align-items: flex-start;
     gap: 1.5rem;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.gap-item:hover {
+    background: rgba(255, 255, 255, 0.05);
+    border-color: var(--border-glow);
+    transform: translateX(4px);
 }
 
 .gap-item.critical {
@@ -68,20 +75,22 @@
 }
 
 .dna-cell {
-    background: var(--bg-card);
+    background: rgba(255, 255, 255, 0.02);
+    backdrop-filter: blur(10px);
     border: 1px solid var(--border-color);
-    border-radius: 8px;
-    padding: 1rem;
+    border-radius: 16px;
+    padding: 1.5rem;
     display: flex;
     flex-direction: column;
     align-items: center;
     text-align: center;
-    transition: 0.3s;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 .dna-cell:hover {
     transform: translateY(-5px);
-    border-color: var(--accent-cyan);
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+    border-color: var(--border-glow);
+    box-shadow: var(--shadow-glow);
+    background: rgba(255, 255, 255, 0.05);
 }
 .dna-cell i { font-size: 2rem; margin-bottom: 0.5rem; }
 .dna-strength {

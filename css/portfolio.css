@@ -72,14 +72,25 @@
 }
 
 .cert-card {
+    background: rgba(255, 255, 255, 0.02);
+    backdrop-filter: blur(10px);
+    border: 1px solid var(--border-color);
+    padding: 1.5rem;
+    border-radius: 20px;
     display: flex;
     align-items: center;
-    gap: 1.5rem;
-    background: var(--bg-card);
-    padding: 1.5rem;
-    border-radius: 12px;
-    border: 1px solid var(--border-color);
+    gap: 1.25rem;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    overflow: hidden;
     margin-bottom: 1rem;
+}
+
+.cert-card:hover {
+    transform: translateX(6px);
+    border-color: var(--border-glow);
+    background: rgba(255, 255, 255, 0.04);
+    box-shadow: -5px 5px 20px rgba(0, 0, 0, 0.2);
 }
 .cert-icon { font-size: 2.5rem; color: var(--warning); }
 .cert-info h3 { margin-bottom: 0.2rem; }
@@ -87,13 +98,13 @@
 
 .verified-badge {
     margin-left: auto;
-    background: rgba(16, 185, 129, 0.1);
-    color: var(--success);
-    padding: 0.4rem 0.8rem;
-    border-radius: 20px;
     font-size: 0.8rem;
-    font-weight: bold;
+    padding: 0.4rem 1rem;
+    border-radius: 20px;
     display: flex;
     align-items: center;
-    gap: 0.5rem;
+    gap: 0.4rem;
+    font-weight: 600;
+    background: rgba(16, 185, 129, 0.1);
+    color: var(--success);
 }

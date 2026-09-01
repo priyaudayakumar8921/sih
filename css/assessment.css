@@ -18,11 +18,13 @@
 }
 
 .question-card {
-    background: var(--bg-card);
+    background: rgba(255, 255, 255, 0.02);
+    backdrop-filter: blur(16px);
     border: 1px solid var(--border-color);
-    border-radius: 16px;
+    border-radius: 20px;
     padding: 2.5rem;
     margin-bottom: 2rem;
+    box-shadow: var(--shadow-glass);
 }
 .question-meta {
     display: flex;
@@ -45,28 +47,30 @@
     gap: 1rem;
 }
 .option-btn {
-    background: var(--bg-main);
+    background: rgba(255, 255, 255, 0.02);
     border: 1px solid var(--border-color);
     padding: 1.2rem;
-    border-radius: 12px;
+    border-radius: 16px;
     color: var(--text-primary);
     font-family: var(--font-main);
     font-size: 1rem;
     text-align: left;
     cursor: pointer;
-    transition: 0.2s;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     display: flex;
     align-items: center;
     gap: 1rem;
 }
 .option-btn:hover {
-    background: var(--bg-card-hover);
-    border-color: var(--accent-blue);
+    background: rgba(255, 255, 255, 0.05);
+    border-color: var(--border-glow);
+    transform: translateX(4px);
 }
 .option-btn.selected {
-    background: var(--accent-blue-dim);
-    border-color: var(--accent-blue);
-    color: var(--accent-blue);
+    background: rgba(6, 182, 212, 0.1);
+    border-color: var(--accent-cyan);
+    color: white;
+    box-shadow: inset 2px 0 10px rgba(6, 182, 212, 0.1);
 }
 .option-letter {
     width: 30px;

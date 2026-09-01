@@ -5,18 +5,20 @@
     flex-wrap: wrap;
 }
 .filter-btn {
-    background-color: var(--bg-card);
+    background: rgba(255, 255, 255, 0.03);
     border: 1px solid var(--border-color);
-    color: var(--text-primary);
-    padding: 0.6rem 1.2rem;
-    border-radius: 20px;
+    color: var(--text-secondary);
+    padding: 0.6rem 1.5rem;
+    border-radius: 30px;
     cursor: pointer;
-    transition: 0.2s;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    font-weight: 500;
 }
 .filter-btn.active, .filter-btn:hover {
-    background-color: var(--accent-blue-dim);
-    border-color: var(--accent-blue);
-    color: var(--accent-blue);
+    background: rgba(6, 182, 212, 0.1);
+    border-color: var(--accent-cyan);
+    color: var(--text-primary);
+    box-shadow: 0 0 15px rgba(6, 182, 212, 0.2);
 }
 
 .opp-grid {
@@ -26,21 +28,22 @@
 }
 
 .opp-card {
-    background: var(--bg-card);
+    background: rgba(255, 255, 255, 0.02);
+    backdrop-filter: blur(10px);
     border: 1px solid var(--border-color);
-    border-radius: 16px;
+    border-radius: 20px;
     padding: 1.5rem;
     display: flex;
     flex-direction: column;
-    transition: 0.3s;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
     position: relative;
     overflow: hidden;
 }
 
 .opp-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 10px 25px rgba(0,0,0,0.05);
-    border-color: var(--accent-cyan);
+    transform: translateY(-6px);
+    box-shadow: var(--shadow-glow);
+    border-color: var(--border-glow);
 }
 
 .match-badge {
@@ -69,9 +72,10 @@
 .opp-meta i { color: var(--text-secondary); width: 20px; }
 
 .opp-match-reason {
-    background-color: var(--bg-main);
-    border-radius: 8px;
-    padding: 1rem;
+    background: rgba(0, 0, 0, 0.2);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: 12px;
+    padding: 1.25rem;
     margin-bottom: 1.5rem;
     flex-grow: 1;
 }
