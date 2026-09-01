@@ -22,94 +22,37 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 });
 
-const defaultQuestions = [
-    {
-        id: "q1",
-        category: "JavaScript",
-        text: "Which method is used to serialize an object into a JSON string in JavaScript?",
-        options: [
-            { id: "A", text: "JSON.parse()" },
-            { id: "B", text: "JSON.stringify()" },
-            { id: "C", text: "Object.toJSON()" },
-            { id: "D", text: "String.toJSON()" }
-        ],
-        correct: "B"
-    },
-    {
-        id: "q2",
-        category: "React",
-        text: "What hook should be used to perform side effects in a functional component?",
-        options: [
-            { id: "A", text: "useState" },
-            { id: "B", text: "useEffect" },
-            { id: "C", text: "useContext" },
-            { id: "D", text: "useReducer" }
-        ],
-        correct: "B"
-    },
-    {
-        id: "q3",
-        category: "Node.js",
-        text: "In Express.js, what is the primary purpose of middleware functions?",
-        options: [
-            { id: "A", text: "To connect directly to MongoDB" },
-            { id: "B", text: "To execute code, modify requests, and end the cycle" },
-            { id: "C", text: "To render HTML templates on the client" },
-            { id: "D", text: "To manage frontend state" }
-        ],
-        correct: "B"
-    },
-    {
-        id: "q4",
-        category: "MongoDB",
-        text: "Which of the following is NOT a valid MongoDB data type?",
-        options: [
-            { id: "A", text: "ObjectId" },
-            { id: "B", text: "Double" },
-            { id: "C", text: "Varchar" },
-            { id: "D", text: "Boolean" }
-        ],
-        correct: "C"
-    },
-    {
-        id: "q5",
-        category: "REST API",
-        text: "Which HTTP method is typically used to partially update a resource?",
-        options: [
-            { id: "A", text: "GET" },
-            { id: "B", text: "POST" },
-            { id: "C", text: "PUT" },
-            { id: "D", text: "PATCH" }
-        ],
-        correct: "D"
-    }
-];
-
 async function loadQuestions() {
     try {
-        const qRef = collection(db, "assessments");
-        const snapshot = await getDocs(qRef);
+        document.getElementById('question-text').textContent = "Connecting to AI Assessment Engine...";
+        document.getElementById('question-counter').textContent = "Initializing...";
         
-        if (snapshot.empty) {
-            console.log("No questions found, seeding database...");
-            const batch = writeBatch(db);
-            defaultQuestions.forEach(q => {
-                const docRef = doc(db, "assessments", q.id);
-                batch.set(docRef, q);
-            });
-            await batch.commit();
-            questions = defaultQuestions;
-        } else {
-            snapshot.forEach(doc => {
-                questions.push({ id: doc.id, ...doc.data() });
-            });
-        }
-        
-        // Shuffle and pick 5
-        questions = questions.sort(() => 0.5 - Math.random()).slice(0, 5);
+        // TODO: Replace this block with your actual AI API fetch call once connected with main app
+        // Example:
+        // const response = await fetch('https://your-main-app.com/api/generate-questions', {
+        //     method: 'POST',
+        //     body: JSON.stringify({ userId: currentUser.uid, targetRole: currentProfile.targetRole })
+        // });
+        // questions = await response.json();
+
+        // Temporary placeholder to prevent app crash until API is connected
+        questions = [
+            {
+                id: "ai-placeholder",
+                category: "AI API Integration",
+                text: "The AI Assessment Engine is ready to be connected. (Waiting for API integration)",
+                options: [
+                    { id: "A", text: "Connect API Endpoint" },
+                    { id: "B", text: "Pass Context" }
+                ],
+                correct: "A"
+            }
+        ];
+
         renderQuestion();
     } catch (e) {
-        console.error("Error loading questions:", e);
+        console.error("Error loading AI questions:", e);
+        document.getElementById('question-text').textContent = "Failed to connect to AI Assessment Engine.";
     }
 }
 
