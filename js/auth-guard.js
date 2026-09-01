@@ -10,10 +10,21 @@ import { doc, getDoc, setDoc } from "https://www.gstatic.com/firebasejs/10.9.0/f
 export function requireAuth(callback) {
     onAuthStateChanged(auth, async (user) => {
         if (!user) {
-            console.log("No authenticated user, displaying empty state or redirecting...");
-            // Optionally redirect here if you want strict enforcement:
-            // window.location.href = 'https://your-main-site.com/login';
-            alert("You must be logged in via the main website to view this data.");
+            console.log("No authenticated user. Bypassing auth and loading Demo Profile for Hackathon...");
+            // Bypass Auth and load the seeded demo profile
+            try {
+                const docRef = doc(db, "students", "demo-user-123");
+                let docSnap = await getDoc(docRef);
+                if (docSnap.exists()) {
+                    // Create a mock 'user' object so the rest of the app doesn't break
+                    const mockUser = { uid: "demo-user-123", email: "demo@example.com", displayName: "Priya" };
+                    callback(mockUser, docSnap.data());
+                } else {
+                    console.error("Demo profile not found in database! Please run seed.html first.");
+                }
+            } catch (err) {
+                console.error("Error loading demo profile:", err);
+            }
             return;
         }
 
